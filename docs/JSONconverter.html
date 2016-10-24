@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="./sample.js"></script>
+    <script>
+    $(function() {
+        'use strict';
+
+        $('#btn').on('click', function() {
+            var jsonVal = JSON.parse($('textarea[name="rawJson"]').val());
+            console.log(jsonVal);
+            $('textarea[name="stringJson"]').val(JSON.stringify((JSON.stringify(jsonVal))));
+        });
+        $('#btn-reverse').on('click', function() {
+            var parsedJson = JSON.parse(JSON.parse($('textarea[name="stringJson').val()));
+            console.log(parsedJson);
+            $('textarea[name="rawJson"]').val(JSON.stringify(parsedJson, null, '\t'));
+        });
+
+        $('#clear').on('click', function() {
+            $('textarea[name="rawJson"]').val('');
+            $('textarea[name="stringJson"]').val('');
+        });
+    });
+    </script>
+</head>
+<div>
+    <label>JSON</label>
+    <br>
+    <textarea name="rawJson" rows="33" cols="120"></textarea>
+</div>
+<div>
+    <label>String JSON</label>
+    <button type="button" id="clear">クリア</button>
+    <button type="button" id="btn-reverse">↑JSONに変換</button>
+    <button type="button" id="btn">↓文字列に変換</button>
+    <br>
+    <textarea name="stringJson" rows="33" cols="120"></textarea>
+</div>
+
+</html>
